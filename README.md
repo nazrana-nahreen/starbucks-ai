@@ -1,8 +1,5 @@
 # ☕ Starbucks AI Operations Intelligence System
 
-> A portfolio-grade AI Engineering project built on 100,000 Starbucks transactions.  
-> Demonstrates: ML models, REST APIs, and an interactive dashboard — fully containerized with Docker.
-
 ![Dashboard Preview](screenshots/overview.png)
 
 ---
