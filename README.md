@@ -19,20 +19,10 @@
     <td align="center"><b>🔍 Deep Insights</b></td>
   </tr>
   <tr>
-    <td><img src="screenshots/predictions.png" alt="Predictions" width="400"/></td>
-    <td><img src="screenshots/segments.png" alt="Segments" width="400"/></td>
+    <td colspan="2" align="center"><img src="screenshots/docker.png" alt="Docker" width="400"/></td>
   </tr>
   <tr>
-    <td align="center"><b>🔮 AI Predictions</b></td>
-    <td align="center"><b>👥 Customer Segments</b></td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/api_docs.png" alt="API Docs" width="400"/></td>
-    <td><img src="screenshots/docker.png" alt="Docker" width="400"/></td>
-  </tr>
-  <tr>
-    <td align="center"><b>⚡ FastAPI Interactive Docs</b></td>
-    <td align="center"><b>🐳 Docker Containers Running</b></td>
+    <td colspan="2" align="center"><b>🐳 Docker Containers Running</b></td>
   </tr>
 </table>
 
