@@ -1,14 +1,61 @@
 # ☕ Starbucks AI Operations Intelligence System
 
-> A portfolio-grade AI Engineering project built on 100,000 Starbucks transactions.
-> Demonstrates: ML models, REST APIs, LLM integration, and interactive dashboards.
+> A portfolio-grade AI Engineering project built on 100,000 Starbucks transactions.  
+> Demonstrates: ML models, REST APIs, and an interactive dashboard — fully containerized with Docker.
+
+![Dashboard Preview](screenshots/overview.png)
+
+---
+
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td><img src="screenshots/overview.png" alt="Overview" width="400"/></td>
+    <td><img src="screenshots/insights.png" alt="Deep Insights" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>📊 Overview Dashboard</b></td>
+    <td align="center"><b>🔍 Deep Insights</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/predictions.png" alt="Predictions" width="400"/></td>
+    <td><img src="screenshots/segments.png" alt="Segments" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>🔮 AI Predictions</b></td>
+    <td align="center"><b>👥 Customer Segments</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/api_docs.png" alt="API Docs" width="400"/></td>
+    <td><img src="screenshots/docker.png" alt="Docker" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>⚡ FastAPI Interactive Docs</b></td>
+    <td align="center"><b>🐳 Docker Containers Running</b></td>
+  </tr>
+</table>
+
+---
+
+## 🧠 What This Project Does
+
+Analyzes 100,000 Starbucks customer transactions across 500 stores (Jan 2024 – Dec 2025) to build an AI-powered operations intelligence system.
+
+**Key findings from the data:**
+- 📱 Mobile App users spend **$18.08 avg** — 45% more than other channels
+- ⏱️ Drive-Thru has the **slowest wait (5.80 min)** and lowest satisfaction
+- 👴 55+ customers placed only **981 mobile orders** vs 16,368 for 25-34
+- ⭐ Rewards members spend **$1.63 more** per visit
+- 🌅 Peak hour is **7am** with 10,208 orders
 
 ---
 
 ## 🗺️ Project Map
 
 ```
-starbucks_ai/
+starbucks-ai/
+├── screenshots/                                    ← Dashboard screenshots
 ├── data/
 │   └── starbucks_customer_ordering_patterns.csv   ← PUT YOUR CSV HERE
 │
@@ -21,172 +68,107 @@ starbucks_ai/
 │
 ├── phase1_ml_models.py      ← Data analysis + ML training
 ├── phase2_fastapi.py        ← REST API server
-├── phase3_llm_analyst.py    ← Natural language Q&A
 ├── phase4_dashboard.py      ← Streamlit web dashboard
+├── Dockerfile               ← Docker container definition
+├── docker-compose.yml       ← Multi-service orchestration
 ├── requirements.txt         ← All dependencies
-└── .env                     ← Your API key (create this yourself)
+└── .gitignore
 ```
 
 ---
 
-## 🚀 Setup (Do This First — One Time Only)
+## 📦 Dataset
 
-### Step 1: Put the CSV in the right place
-```
-Copy your CSV file to:  starbucks_ai/data/starbucks_customer_ordering_patterns.csv
-```
+**Source:** [Starbucks Customer Ordering Patterns — Kaggle](https://www.kaggle.com/datasets/likithagedipudi/starbucks-customer-ordering-patterns)
 
-### Step 2: Create a virtual environment (keeps your project isolated)
-```bash
-# In your terminal, navigate to the starbucks_ai folder first
-cd starbucks_ai
+| Property | Value |
+|---|---|
+| Rows | 100,000 transactions |
+| Columns | 20 features |
+| Missing values | None |
+| Period | Jan 2024 – Dec 2025 |
+| Stores | 500 locations |
+| Regions | Northeast, Southeast, Midwest, West, Southwest |
 
-# Create virtual environment
-python -m venv venv
-
-# Activate it:
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
-
-# You'll see (venv) appear in your terminal prompt — that means it worked!
-```
-
-### Step 3: Install all dependencies
-```bash
-pip install -r requirements.txt
-```
-This installs everything: pandas, scikit-learn, fastapi, streamlit, anthropic, etc.
-
-### Step 4: Create your .env file (for API key)
-```bash
-# Create a file called .env in the starbucks_ai folder
-# Add this line (replace with your actual key):
-ANTHROPIC_API_KEY=sk-ant-your-key-here
-```
-Get a free key at: https://console.anthropic.com
+> Download the CSV from Kaggle and place it in the `data/` folder.
 
 ---
 
-## 📋 Running Each Phase
+## 🚀 Option A — Run with Docker (Recommended)
 
-### Phase 1: Train the ML Models
+**Step 1:** Install Docker Desktop from https://www.docker.com/products/docker-desktop
+
+**Step 2:** Clone the repo and add your CSV
+```bash
+git clone https://github.com/nazrana-nahreen/starbucks-ai.git
+cd starbucks-ai
+```
+
+**Step 3:** Train the models
 ```bash
 python phase1_ml_models.py
 ```
-**What it does:** Loads data, trains 3 models, saves them to the models/ folder.
-**Takes:** ~2 minutes
-**Output:** See models/ folder fill up with .pkl files + charts
+
+**Step 4:** Start everything
+```bash
+docker-compose up --build
+```
+
+**Step 5:** Open in browser
+- Dashboard → http://localhost:8501
+- API Docs  → http://localhost:8000/docs
+
+**Stop:**
+```bash
+docker-compose down
+```
 
 ---
 
-### Phase 2: Start the API Server
+## 🛠️ Option B — Run Locally
+
 ```bash
+# Create virtual environment
+python -m venv venv
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # Mac/Linux
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Train models
+python phase1_ml_models.py
+
+# Start API (keep running)
 python phase2_fastapi.py
-```
-**What it does:** Starts a web server on your computer at http://localhost:8000
-**Interactive docs:** Open http://localhost:8000/docs in your browser
-   → You can test every endpoint by clicking buttons — no code needed!
 
-**Why this matters for your CV:**
-You've now turned your ML models into a DEPLOYABLE SERVICE.
-Any app, website, or mobile app could now call your predictions.
-
-**Leave this running** while you use the dashboard.
-
----
-
-### Phase 3: Ask Questions in Plain English
-```bash
-python phase3_llm_analyst.py
-```
-**What it does:** Lets you have a conversation with your data.
-**Example questions:**
-- "Which ordering channel has the worst wait times?"
-- "Why do older customers avoid the mobile app?"
-- "What should we do to increase mobile adoption in rural stores?"
-
----
-
-### Phase 4: Open the Dashboard
-```bash
+# Open dashboard (new terminal)
 streamlit run phase4_dashboard.py
 ```
-**What it does:** Opens a beautiful web dashboard at http://localhost:8501
-
-**Features:**
-- 📊 Overview: KPIs, charts, trends
-- 🔮 Predictions: Enter any customer profile and get AI predictions
-- 👥 Segments: Customer persona cards
-- 🤖 AI Analyst: Chat interface powered by Claude
 
 ---
 
-## 🎓 What You Learned (What to Say in Interviews)
+## 📊 Dashboard Pages
 
-### "What does Phase 1 teach you?"
-> "I learned how to do EDA (Exploratory Data Analysis) with pandas, encode categorical
-> features for ML models, train Random Forest regressors for prediction tasks, and use
-> K-Means clustering for unsupervised customer segmentation. I evaluated models using
-> MAE and R² metrics."
-
-### "What does Phase 2 teach you?"
-> "FastAPI is a Python framework for building REST APIs. An API (Application Programming
-> Interface) is how two programs talk to each other over the internet. I wrapped my ML
-> models in HTTP endpoints using POST requests, defined data validation schemas with
-> Pydantic, and learned the difference between GET and POST requests."
-
-### "What does Phase 3 teach you?"
-> "I used the Anthropic API to add a natural language layer on top of structured data.
-> The key technique is RAG-adjacent: I pre-compute statistics from the dataset and inject
-> them into the LLM's context window, so it gives accurate data-grounded answers instead
-> of hallucinating."
-
-### "What does Phase 4 teach you?"
-> "Streamlit is a Python library that converts scripts into interactive web apps. I used
-> session_state for chat history persistence, Plotly for interactive charts, and connected
-> the frontend to my FastAPI backend. This creates a complete full-stack application."
+| Page | Description |
+|---|---|
+| 📊 Overview | KPIs, key findings, trend charts |
+| 🔍 Deep Insights | Region, drink, satisfaction breakdown |
+| 🔮 Predictions | ML-powered spend & wait time predictions |
+| 👥 Segments | AI customer persona classification |
 
 ---
 
-## 🐳 Bonus: Docker (When You're Ready)
+## 🤖 ML Models
 
-Docker packages your app so it runs identically on ANY computer.
-Think of it as a shipping container for your code.
-
-```dockerfile
-# Dockerfile (create this in your starbucks_ai folder)
-FROM python:3.11-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-EXPOSE 8000
-CMD ["python", "phase2_fastapi.py"]
-```
-
-```bash
-# Build the container
-docker build -t starbucks-ai .
-
-# Run it
-docker run -p 8000:8000 starbucks-ai
-```
-
-**Why this matters:** Your API now runs in an isolated container.
-It works on Windows, Mac, Linux, and cloud servers — guaranteed.
+| Model | Algorithm | Predicts |
+|---|---|---|
+| Spend Prediction | Random Forest Regressor | Total customer spend |
+| Wait Time Prediction | Random Forest Regressor | Order fulfillment time |
+| Customer Segmentation | K-Means Clustering | Customer persona (4 groups) |
 
 ---
 
-## 📝 CV Description
+## 🛠️ Tech Stack
 
-**Starbucks AI Operations Intelligence System**
-*Python · FastAPI · Scikit-learn · Streamlit · Anthropic API · Docker*
-
-Built an end-to-end ML pipeline analyzing 100K Starbucks transactions to predict
-customer spend and order fulfillment time (MAE: $X, R²: 0.XX). Deployed 3 ML models
-(Random Forest, K-Means) as a RESTful API using FastAPI and Docker. Integrated
-Claude (Anthropic LLM) to enable natural language querying of operational data.
-Visualized insights in a Streamlit dashboard featuring real-time predictions and
-AI-powered customer segment analysis.
+`Python` · `Pandas` · `Scikit-learn` · `FastAPI` · `Streamlit` · `Plotly` · `Docker` · `docker-compose`
