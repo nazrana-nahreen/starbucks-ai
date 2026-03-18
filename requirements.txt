@@ -1,0 +1,33 @@
+# ============================================
+# STARBUCKS AI PROJECT - All Dependencies
+# ============================================
+# Install all of these by running:
+#   pip install -r requirements.txt
+#
+# ⚠️  NOTE: Pin versions removed for Python 3.13/3.14 compatibility
+#     pip will automatically pick the latest compatible version
+
+# --- Data & Analysis ---
+pandas>=2.2.3           # For loading and manipulating data (like Excel, but in Python)
+numpy>=2.1.0            # For math/numbers (2.x has Python 3.13/3.14 wheels)
+matplotlib>=3.9.0       # For drawing charts
+seaborn>=0.13.2         # For prettier charts
+
+# --- Machine Learning ---
+scikit-learn>=1.5.0     # The main ML library (clustering, regression, etc.)
+
+# --- FastAPI (Phase 2 - Web API) ---
+fastapi>=0.115.0        # Turns your Python code into a web service
+uvicorn>=0.30.0         # The "engine" that runs FastAPI
+pydantic>=2.8.0         # Validates data coming into your API
+
+# --- LLM Layer (Phase 3) ---
+anthropic>=0.40.0       # Anthropic SDK to talk to Claude
+
+# --- Dashboard (Phase 4) ---
+streamlit>=1.39.0       # Turns Python scripts into interactive web apps
+plotly>=5.24.0          # Interactive charts for the dashboard
+
+# --- Utilities ---
+python-dotenv>=1.0.0    # Loads secret keys from a .env file (keeps API keys safe)
+joblib>=1.4.0           # Saves and loads trained ML models

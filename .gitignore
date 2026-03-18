@@ -1,0 +1,15 @@
+# Virtual environment
+.venv/
+venv/
+
+# Secrets
+.env
+
+# Large files — GitHub e dewa lagbena
+data/
+models/*.pkl
+
+# Python cache
+__pycache__/
+*.pyc
+*.zip

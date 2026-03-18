@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  api:
+    build: .
+    container_name: starbucks-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+    command: python phase2_fastapi.py
+    restart: unless-stopped
+
+  dashboard:
+    build: .
+    container_name: starbucks-dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+    command: streamlit run phase4_dashboard.py --server.port=8501 --server.address=0.0.0.0
+    depends_on:
+      - api
+    restart: unless-stopped
