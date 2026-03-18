@@ -45,11 +45,11 @@ Analyzes 100,000 Starbucks customer transactions across 500 stores (Jan 2024 –
 
 ```
 starbucks-ai/
-├── screenshots/                                    ← Dashboard screenshots
+├── screenshots/                                    
 ├── data/
-│   └── starbucks_customer_ordering_patterns.csv   ← PUT YOUR CSV HERE
+│   └── starbucks_customer_ordering_patterns.csv  
 │
-├── models/                                         ← Auto-created when you run Phase 1
+├── models/                                        
 │   ├── spend_prediction_model.pkl
 │   ├── wait_time_model.pkl
 │   ├── kmeans_model.pkl
