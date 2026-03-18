@@ -1,4 +1,4 @@
-# ☕ Starbucks AI Operations Intelligence System
+# ☕ Starbucks AI Operations Dashboard
 
 ![Dashboard Preview](screenshots/overview.png)
 
